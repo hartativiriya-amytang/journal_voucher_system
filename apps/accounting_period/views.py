@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from accounting_period.models import AccountingPeriod
+from accounting_period.serializers import AccountingPeriodSerializer
+from common.views import BaseViewSet
 
-# Create your views here.
+
+class AccountingPeriodViewSet(BaseViewSet):
+    queryset = AccountingPeriod.objects.all()
+    serializer_class = AccountingPeriodSerializer
+    search_fields = ['code', 'name']

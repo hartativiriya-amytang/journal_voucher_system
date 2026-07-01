@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from vendor.models import Vendor
+from vendor.serializers import VendorSerializer
+from common.views import BaseViewSet
 
-# Create your views here.
+
+class VendorViewSet(BaseViewSet):
+    queryset = Vendor.objects.all()
+    serializer_class = VendorSerializer
+    search_fields = ['code', 'name', 'email', 'tax_id']

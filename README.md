@@ -41,7 +41,7 @@ journal_voucher_system/
 ```
 
 ## Main application modules
-
+```text
 - apps/common/: shared utilities, mixins, base models, constants, and permissions
 - apps/master_data/: master reference data such as companies, branches, and currencies
 - apps/accounting_period/: accounting period lifecycle and validation rules
@@ -89,13 +89,27 @@ python manage.py runserver
 - Add or update tests in each app's tests.py file when changing behavior.
 - Use environment variables for secrets and configuration in a real deployment setup.
 
-## Next steps
+## Current status — Sprint 1 complete
 
-The project currently has the main folder structure and starter modules. The next improvements may include:
-- completing app models and serializers
-- implementing API endpoints and authentication
-- adding documentation for each module
-- expanding reporting and posting workflows
+Sprint 1 has been implemented:
+
+| Feature | Status |
+|---------|--------|
+| Jazzmin admin UI | Configured with custom sidebar, icons, and theme |
+| Master Data (Company, Branch, Currency) | Models, API, and admin done |
+| Accounting Period | Model with date validation, API, and admin done |
+| Chart of Account | Hierarchical model with parent-child, API, and admin done |
+| Vendor | Full vendor management, API, and admin done |
+| REST API with DRF | Complete CRUD endpoints with search, ordering, pagination |
+
+See [apps/README.md](apps/README.md) for detailed API documentation.
+
+## Next steps (Sprint 2)
+
+- Journal Voucher creation and validation
+- Journal Entry inline management
+- Excel upload for batch voucher creation
+- Business validation rules (debit = credit, period open, account active)
 
 ## ERD 
 ```text
