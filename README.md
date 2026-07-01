@@ -42,28 +42,12 @@ journal_voucher_system/
 
 ## Main application modules
 
-- `apps/common/`: shared utilities, mixins, base models, constants, and permissions
-- `apps/master_data/`: master reference data such as companies, branches, and currencies
-- `apps/accounting_period/`: accounting period lifecycle and validation rules
-- `apps/chart_of_account/`: chart of accounts structure and account types
-- `apps/vendor/`: vendor and supplier data management
-- `apps/journal_voucher/`: core voucher, entry, and validation logic
-
-### Journal Voucher API
-```text
-Method	    Endpoint	                                    Description
-GET	        `/api/journal-vouchers/`	                    List all vouchers
-POST	    `/api/journal-vouchers/`	                    Create new voucher
-GET	        `/api/journal-vouchers/{id}/`	                Get voucher detail
-PUT	        `/api/journal-vouchers/{id}/`	                Update voucher
-DELETE	    `/api/journal-vouchers/{id}/`	                Delete voucher (if draft)
-POST	    `/api/journal-vouchers/{id}/validate_voucher/`	Validate voucher
-POST	    `/api/journal-vouchers/{id}/post_voucher/`	    Post voucher
-POST	    `/api/journal-vouchers/{id}/void_voucher/`	    Void voucher
-POST	    `/api/journal-vouchers/upload_excel/`	        Upload Excel file
-GET	        `/api/journal-vouchers/{id}/export_excel/`	    Export to Excel
-GET	        `/api/journal-vouchers/{id}/export_pdf/`	    Export to PDF
-
+- apps/common/: shared utilities, mixins, base models, constants, and permissions
+- apps/master_data/: master reference data such as companies, branches, and currencies
+- apps/accounting_period/: accounting period lifecycle and validation rules
+- apps/chart_of_account/: chart of accounts structure and account types
+- apps/vendor/: vendor and supplier data management
+- apps/journal_voucher/: core voucher, entry, and validation logic
 
 ## Requirements
 
@@ -112,3 +96,71 @@ The project currently has the main folder structure and starter modules. The nex
 - implementing API endpoints and authentication
 - adding documentation for each module
 - expanding reporting and posting workflows
+
+## ERD 
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────────────┐
+│ AccountingPeriod│     │  ChartOfAccount  │     │      Vendor         │
+├─────────────────┤     ├──────────────────┤     ├─────────────────────┤
+│ id              │     │ id               │     │ id                  │
+│ code            │     │ code             │     │ code                │
+│ name            │     │ name             │     │ name                │
+│ start_date      │     │ account_type     │     │ address             │
+│ end_date        │     │ parent (self)    │     │ phone               │
+│ status          │     │ normal_balance   │     │ email               │
+└─────────────────┘     └──────────────────┘     └─────────────────────┘
+         │                        │                         │
+         │                        │                         │
+         └────────────────────────┼─────────────────────────┘
+                                  │
+                     ┌────────────┴────────────┐
+                     │   JournalVoucher        │
+                     ├─────────────────────────┤
+                     │ id                      │
+                     │ voucher_number          │
+                     │ accounting_period (FK)  │◄──┐
+                     │ transaction_date        │   │
+                     │ description             │   │
+                     │ bl_number               │   │
+                     │ invoice_number          │   │
+                     │ vendor (FK)             │───┘
+                     │ status                  │
+                     │ total_debit             │
+                     │ total_credit            │
+                     └─────────────────────────┘
+                                  │
+                                  │
+                     ┌────────────┴────────────┐
+                     │    JournalEntry         │
+                     ├─────────────────────────┤
+                     │ id                      │
+                     │ voucher (FK)            │◄──┐
+                     │ account (FK)            │───┼──┐
+                     │ debit                   │   │  │
+                     │ credit                  │   │  │
+                     │ description             │   │  │
+                     │ line_order              │   │  │
+                     └─────────────────────────┘   │  │
+                                                   │  │
+┌──────────────────┐                               │  │
+│      User        │                               │  │
+├──────────────────┤                               │  │
+│ id               │                               │  │
+│ username         │                               │  │
+│ email            │                               │  │
+│ password         │                               │  │
+└──────────────────┘                               │  │
+         │                                         │  │
+         └─────────────────────────────────────────┘  │
+                                                      │
+                                    ┌─────────────────┘
+                                    │
+                           ┌────────┴────────┐
+                           │   GL Entries    │
+                           ├─────────────────┤
+                           │ id              │
+                           │ voucher (FK)    │
+                           │ account (FK)    │
+                           │ debit           │
+                           │ credit          │
+                           │ period (FK)     │
+                           └─────────────────┘
