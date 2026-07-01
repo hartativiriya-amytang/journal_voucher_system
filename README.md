@@ -49,6 +49,21 @@ journal_voucher_system/
 - `apps/vendor/`: vendor and supplier data management
 - `apps/journal_voucher/`: core voucher, entry, and validation logic
 
+### Journal Voucher API
+Method	    Endpoint	                                Description
+GET	        `/api/journal-vouchers/`	                    List all vouchers
+POST	    `/api/journal-vouchers/`	                    Create new voucher
+GET	        `/api/journal-vouchers/{id}/`	                Get voucher detail
+PUT	        `/api/journal-vouchers/{id}/`	                Update voucher
+DELETE	    `/api/journal-vouchers/{id}/`	                Delete voucher (if draft)
+POST	    `/api/journal-vouchers/{id}/validate_voucher/`	Validate voucher
+POST	    `/api/journal-vouchers/{id}/post_voucher/`	    Post voucher
+POST	    `/api/journal-vouchers/{id}/void_voucher/`	    Void voucher
+POST	    `/api/journal-vouchers/upload_excel/`	        Upload Excel file
+GET	        `/api/journal-vouchers/{id}/export_excel/`	    Export to Excel
+GET	        `/api/journal-vouchers/{id}/export_pdf/`	    Export to PDF
+
+
 ## Requirements
 
 - Python 3.10 or newer
