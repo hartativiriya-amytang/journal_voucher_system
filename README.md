@@ -50,8 +50,8 @@ journal_voucher_system/
 - `apps/journal_voucher/`: core voucher, entry, and validation logic
 
 ### Journal Voucher API
-``text
-Method	    Endpoint	                                Description
+```text
+Method	    Endpoint	                                    Description
 GET	        `/api/journal-vouchers/`	                    List all vouchers
 POST	    `/api/journal-vouchers/`	                    Create new voucher
 GET	        `/api/journal-vouchers/{id}/`	                Get voucher detail
