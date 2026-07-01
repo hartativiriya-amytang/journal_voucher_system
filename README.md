@@ -42,12 +42,12 @@ journal_voucher_system/
 
 ## Main application modules
 
-- apps/common/: shared utilities, mixins, base models, constants, and permissions
-- apps/master_data/: master reference data such as companies, branches, and currencies
-- apps/accounting_period/: accounting period lifecycle and validation rules
-- apps/chart_of_account/: chart of accounts structure and account types
-- apps/vendor/: vendor and supplier data management
-- apps/journal_voucher/: core voucher, entry, and validation logic
+- `apps/common/`: shared utilities, mixins, base models, constants, and permissions
+- `apps/master_data/`: master reference data such as companies, branches, and currencies
+- `apps/accounting_period/`: accounting period lifecycle and validation rules
+- `apps/chart_of_account/`: chart of accounts structure and account types
+- `apps/vendor/`: vendor and supplier data management
+- `apps/journal_voucher/`: core voucher, entry, and validation logic
 
 ## Requirements
 
