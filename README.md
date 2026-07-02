@@ -1,4 +1,4 @@
-# Journal Voucher System
+# Journal Voucher System (under construction 🚧)
 
 This repository contains a Django-based journal voucher and accounting management project. The application is organized into reusable Django apps under the apps directory, with the main project configuration in the journal_voucher_system package.
 
@@ -50,7 +50,7 @@ journal_voucher_system/
 - apps/journal_voucher/: core voucher, entry, and validation logic
 
 ## Requirements
-
+```text
 - Python 3.10 or newer
 - Django 5.2.x (as configured in the project)
 - pip
@@ -63,9 +63,11 @@ From the project root, run:
 python -m venv .venv
 
 # Windows
+```bash
 .venv\Scripts\activate
 
 # macOS / Linux
+```bash
 source .venv/bin/activate
 
 pip install -r apps/requirements.txt
