@@ -48,24 +48,24 @@ journal_voucher_system/
 - apps/chart_of_account/: chart of accounts structure and account types
 - apps/vendor/: vendor and supplier data management
 - apps/journal_voucher/: core voucher, entry, and validation logic
-
+```
 ## Requirements
 ```text
 - Python 3.10 or newer
 - Django 5.2.x (as configured in the project)
 - pip
-
+```
 ## Local setup
 
 From the project root, run:
 
 ```bash
 python -m venv .venv
-
+```
 # Windows
 ```bash
 .venv\Scripts\activate
-
+```
 # macOS / Linux
 ```bash
 source .venv/bin/activate
