@@ -91,7 +91,7 @@ python manage.py runserver
 - Add or update tests in each app's tests.py file when changing behavior.
 - Use environment variables for secrets and configuration in a real deployment setup.
 
-## Current status — Sprint 1 complete
+## Current status — Sprints 1 & 2 complete
 
 Sprint 1 has been implemented:
 
@@ -104,14 +104,25 @@ Sprint 1 has been implemented:
 | Vendor | Full vendor management, API, and admin done |
 | REST API with DRF | Complete CRUD endpoints with search, ordering, pagination |
 
+Sprint 2 has been implemented:
+
+| Feature | Status |
+|---------|--------|
+| Journal Voucher & Journal Entry models | Auto-generated voucher numbers, FK to period/vendor/user, inline entries |
+| Journal Entry inline management | Writable nested serializer with debit/credit validation |
+| Business validation rules | Debit = credit, period must be open, account must be active |
+| Voucher validate/void workflow | Validate checks all rules; void marks as VOID |
+| Excel upload for batch creation | Upload via `openpyxl`, groups rows by description into balanced vouchers |
+| Django admin with inline | TabularInline for JournalEntry under JournalVoucher |
+| API endpoints | CRUD + `/validate/`, `/void/`, `/upload_excel/` actions |
+
 See [apps/README.md](apps/README.md) for detailed API documentation.
 
-## Next steps (Sprint 2)
+## Next steps (Sprint 3)
 
-- Journal Voucher creation and validation
-- Journal Entry inline management
-- Excel upload for batch voucher creation
-- Business validation rules (debit = credit, period open, account active)
+- Opening Balance
+- Ledger Engine / GL Entries
+- Posting Engine
 
 ## ERD 
 ```text
