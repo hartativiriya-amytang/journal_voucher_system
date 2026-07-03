@@ -127,6 +127,11 @@ class JournalVoucherViewSet(BaseViewSet):
                         tx_date = raw_date.date()
                     elif isinstance(raw_date, date):
                         tx_date = raw_date
+                    elif raw_date:
+                        try:
+                            tx_date = datetime.strptime(str(raw_date).strip(), '%Y-%m-%d').date()
+                        except (ValueError, TypeError):
+                            tx_date = date.today()
                     else:
                         tx_date = date.today()
 
